@@ -15,14 +15,18 @@ def makeRandomDeck(existingDeck=None):
     return deck
 
 def reshuffleDeck(app):
-    cardsInHands = set()
+    cardsInPlay = set()
     for hand in app.cards:
         for card in app.cards[hand]:
             if card == None: continue
-            cardsInHands.add(card.value)
-    return makeRandomDeck(cardsInHands)
+            cardsInPlay.add(card.value)
+    if app.topCard != None: cardsInPlay.add(app.topCard)
+    if app.cardBeingSeen != None: cardsInPlay.add(app.cardBeingSeen)
+    if app.tempCard != None: cardsInPlay.add(app.tempCard.value)
+    return makeRandomDeck(cardsInPlay)
 
 def dealCard(app):
+    if len(app.deck) < 2: app.deck = reshuffleDeck(app)
     card = app.deck[:2]
     app.deck = app.deck[2:]
     return card
@@ -334,7 +338,7 @@ your hand.
  After the call, that player's turn is skipped, and each other player gets \
 to play 
  once before the game ends. During this period, the caller's cards cannot be 
- stuck. When the game ends, the player with the lowest score wins!
+ stuck or swapped. When the game ends, the player with the lowest score wins!
 
 Good luck! If you're confused, that's okay; the best way to learn is to play.'''
     app.rulePosition = 0
@@ -1544,32 +1548,24 @@ def computerLookAtOwnCard(app,player):
             wait(app, app.showLength, lambda app: unHighlightCard(app,player,j))
             break
 
+def unHighlightLater(app, i, j):
+    wait(app, app.showLength, lambda app: unHighlightCard(app, i, j))
+
 def computerDoKingView(app, player):
     cardsLookedAt = 0
-    for card in app.cards[player]:
-        if card == None: continue
-        if not card.computerKnows[player] and cardsLookedAt < 2:
-            card.computerKnows[player] = True
-            app.cardsHighlighted.add((player,card.j))
-            cardsLookedAt += 1
-            j = card.j
-            wait(app, app.showLength, lambda app: unHighlightCard(app))
-    if cardsLookedAt < 2:
-        card = app.cards[random.randint(0,3)][random.randint(0,5)]
-        while card == None or card.computerKnows[player] or card.i == player:
-            card = app.cards[random.randint(0,3)][random.randint(0,5)]
+    while cardsLookedAt < 2:
+        choices = []
+        for hand in activeHands(app):
+            for card in app.cards[hand]:
+                if card == None: continue
+                if card.computerKnows[player]: continue
+                choices.append(card)
+        if len(choices) == 0: return
+        card = choices[random.randint(0, len(choices) - 1)]
         card.computerKnows[player] = True
-        app.cardsHighlighted.add((player,card.j))
-        j = card.j
-        wait(app, app.showLength, lambda app: unHighlightCard(app))
-    if cardsLookedAt < 2:
-        card = app.cards[random.randint(0,3)][random.randint(0,5)]
-        while card == None or card.computerKnows[player] or card.i == player:
-            card = app.cards[random.randint(0,3)][random.randint(0,5)]
-        card.computerKnows[player] = True
-        j = card.j
-        app.cardsHighlighted.add((player,j))
-        wait(app, app.showLength, lambda app: unHighlightCard(app))
+        app.cardsHighlighted.add((card.i, card.j))
+        unHighlightLater(app, card.i, card.j)
+        cardsLookedAt += 1
 
 def computerTryStick(app, player):
     if app.osherCaller == player: return
