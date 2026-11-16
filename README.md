@@ -31,7 +31,7 @@ need to memorise the whole list.
 
 | Key | What it does |
 | --- | --- |
-| `f` | Finish looking at a card, or confirm the two cards you viewed with a King |
+| `f` | Finish looking at a card(s) |
 | `o` | Call Osher (only while you are drawing) |
 | `d` | Discard the card you just drew |
 | `s` | Carry out a swap you have selected |
