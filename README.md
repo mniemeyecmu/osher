@@ -4,6 +4,8 @@ A single-player implementation of the card game Osher, played against two to
 four computer opponents. Written in Python with
 [cmu_graphics](https://academy.cs.cmu.edu/desktop).
 
+![Osher cover screen](Screenshot_Osher_2.png)
+
 ![Osher game in progress](Screenshot_Osher.png)
 
 ## Running it
