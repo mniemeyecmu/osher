@@ -19,7 +19,7 @@ Run it from the repository root, images folder is needed
 
 Landscape-style windows work best
 
-Created for Windows machines, issues with font sizes on
+Created for Windows machines, issues with fonts/font sizes on
 Linux/MacOS is a known bug
 
 On Mac and Windows you can instead use the
