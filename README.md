@@ -26,6 +26,8 @@ bundles its own dependencies.
 
 **Do not install cmu-graphics 2.0.5 or newer.**
 
+Newer versions of CMU graphics include an MVC checker that is incompatible with the game.
+
 ## Controls
 
 The game prompts you with whichever keys are available at the time; you never
