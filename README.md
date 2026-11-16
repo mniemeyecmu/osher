@@ -53,7 +53,7 @@ You can see the rules in-game by clicking "Rules".
 
 ```
 Osher.py        the whole game
-images/         61 image assets (52 card faces, backgrounds, table, UI)
+images/         60 image assets (52 card faces, backgrounds, table, UI)
 ```
 
 ## Credits
