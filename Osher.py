@@ -4,7 +4,7 @@ import copy
 import math
 from PIL import Image
 
-def makeRandomDeck(existingDeck=None):
+def makeRandomDeck(existingDeck=None): # taken from CS Academy's Play 21
     deck = ''
     for i in random.sample(range(52), 52):
         rank = 'A23456789TJQK'[i%13]
@@ -123,7 +123,6 @@ def loadImages(app):
     app.hardBackgroundRaw = Image.open('images/Background-Hard.jpg')
     app.impossibleBackgroundRaw = Image.open('images/Background-Impossible.jpg')
     app.coverImage = CMUImage(Image.open('images/Cover.jpg'))
-    app.wordmark = CMUImage(Image.open('images/Wordmark.png'))
     app.buttonImageRaw = getTransparentImage('images/Button.png')
     loadCardImages(app)
     rescaleImages(app)
@@ -779,9 +778,6 @@ def drawCover(app):
     drawImage(app.coverImage,0,0,align='left-top',width=app.width,
               height=app.height)
     drawRect(0,0,app.width,app.height,fill='white',opacity=15)
-    drawImage(app.wordmark,app.width - app.len/2.7, app.height/20,
-              height = app.len/2.7 - app.len/20, width = app.len/2.7 - 
-              app.len/20)
     drawLabel("Osher", app.width/2 + app.len/2.3, app.height/2 + app.len/10,
               size = app.len/5,font = 'felix titling')
     drawLabel("A card game", app.width/2 + app.len/2.8, app.height/2+app.len/4,
