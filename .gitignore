@@ -1,19 +1,14 @@
-# Python
 __pycache__/
 *.py[cod]
 *.egg-info/
 .venv/
 venv/
 env/
-
-# cmu_graphics, if you vendor it locally instead of installing from PyPI
+build/
+dist/
 cmu_graphics/
-
-# Editors
 .vscode/
 .idea/
 *.swp
-
-# OS
 .DS_Store
 Thumbs.db

@@ -15,12 +15,22 @@ pip install "cmu-graphics==1.1.40" pillow
 python Osher.py
 ```
 
-Run it from the repository root, images folder is needed
+Run it from the repository root, images folder is needed.
 
-Landscape-style windows work best
+## Executable
+
+```bash
+pip install "cmu-graphics==1.1.40" pillow pyinstaller
+pyinstaller Osher.spec
+```
+
+This creates a standalone executable that works without
+Python installed.
+
+Landscape-style windows work best.
 
 Created for Windows machines, issues with font sizes on
-Linux/MacOS is a known bug
+Linux/MacOS is a known bug.
 
 On Mac and Windows you can instead use the
 [zip installer](https://academy.cs.cmu.edu/desktop) from CS Academy, which
@@ -32,8 +42,7 @@ Newer versions of CMU graphics include an MVC checker that is incompatible with 
 
 ## Controls
 
-The game prompts you with whichever keys are available at the time; you never
-need to memorise the whole list.
+The game prompts you with whichever keys are available at the time.
 
 | Key | What it does |
 | --- | --- |
