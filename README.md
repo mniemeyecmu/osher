@@ -65,6 +65,9 @@ You can see the rules in-game by clicking "Rules".
 ```
 Osher.py        the whole game
 images/         60 image assets (52 card faces, backgrounds, table, UI)
+Osher.spec      specification for building executable locally
+rhooks.py       runtime hooks used by Osher.spec
+Osher.ico       icon used by Osher.spec
 ```
 
 ## Credits
